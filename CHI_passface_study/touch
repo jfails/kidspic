@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+      <script type="text/javascript" src="http://code.jquery.com/jquery-1.12.3.min.js"></script>
+      <script type="text/javascript" src="gaussian.js"></script>
+      <script type="text/javascript">
+         jQuery(window).load(function(){
+         	$('.blurImageContainer .blurImage').css({opacity: 0});
+         	$('.blurImageContainer').gaussianBlur({
+         		deviation: 20, //level of blur
+         		imageClass: 'blurImage'	//class of the original image (just in case)	
+         	});
+         	
+         	$('.blurImageContainer').hover(function(){
+         		$('.blurImage', this).animate({opacity: 1}, 500);
+         	},function(){
+         		$('.blurImage', this).animate({opacity: 0}, 500);
+         	});
+         	
+         });
+      </script>
+      <style>
+         body { background-color:#fafafa;}
+         .blurImageContainer {
+         display: inline-block;
+         position: relative;
+         overflow: hidden;
+         }
+         .blurImageContainer > .blurImage {
+         position: absolute;
+         top: 0;
+         left: 0;
+         z-index: 1;
+         }
+         .blurImageContainer > [id^="blurred"] {
+         position: absolute;
+         top:0;
+         left:0;
+         z-index:0;
+         }
+         div#root {
+         max-width: 1000px;
+         margin: 150px auto;
+         text-align: center;
+         }
+      </style>
+      <title>Secure images</title>
+   </head>
+   <body>
+      <div id="root"> 
+         <span class="blurImageContainer"> <img class="blurImage" src="https://unsplash.it/144/144?image=1084"> </span> 
+         <span class="blurImageContainer"> <img class="blurImage" src="https://unsplash.it/144/144?image=1083"> </span> 
+         <span class="blurImageContainer"> <img class="blurImage" src="https://unsplash.it/144/144?image=1082"> </span> 
+         <span class="blurImageContainer"> <img class="blurImage" src="https://unsplash.it/144/144?image=1081"> </span>
+         <span class="blurImageContainer"> <img class="blurImage" src="https://unsplash.it/144/144?image=1080"> </span> 
+         <span class="blurImageContainer"> <img class="blurImage" src="https://unsplash.it/144/144?image=1079"> </span> 
+         <span class="blurImageContainer"> <img class="blurImage" src="https://unsplash.it/144/144?image=1078"> </span>
+      </div>
+   </body>
+</html>

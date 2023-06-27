@@ -1,0 +1,86 @@
+<?php
+  session_start();
+  $_SESSION["username"] = $_POST["username"];
+?>
+
+<!DOCTYPE html>
+<html>
+	<head> 
+			<script type = "text/javascript" 
+			src = "./jQuery v3.4.1.js">
+			</script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="login_Page.css">
+		<script src="test.js"></script>
+	</head>
+<body>
+<div class="header" id="myHeader">
+</div>
+<div align="center">
+<h1>pass face</h1>
+</div>
+<div class="row" align="center"> 
+  <div class="column" align="center">
+   <img src="./images/download.jpeg" style="width:15%" onclick="image_selection(this.id)" id="img11"> 
+   <img src="./images/download.jpeg" style="width:15%" onclick="image_selection(this.id)" id="img12">
+ 	<img src="./images/download.jpeg" style="width:15%" onclick="image_selection(this.id)" id="img13">
+ 	<br>
+ 	<img src="./images/download.jpeg" style="width:15%" onclick="image_selection(this.id)" id="img14">
+ 	<img src="./images/download.jpeg" style="width:15%" onclick="image_selection(this.id)" id="img15">
+ 	<img src="./images/download.jpeg" style="width:15%" onclick="image_selection(this.id)" id="img16">
+ 		<br>
+ 	<img src="./images/download.jpeg" style="width:15%" onclick="image_selection(this.id)" id="img17">
+ 	<img src="./images/download.jpeg" style="width:15%" onclick="image_selection(this.id)" id="img18">
+ 	<img src="./images/download.jpeg" style="width:15%" onclick="image_selection(this.id)" id="img19">
+ 		<br>
+ 	<img src="./images/download.jpeg" style="width:15%" onclick="image_selection(this.id)" id="img110">
+ 	<img src="./images/download.jpeg" style="width:15%" onclick="image_selection(this.id)" id="img111">
+ 	<img src="./images/download.jpeg" style="width:15%" onclick="image_selection(this.id)" id="img112">
+</div>
+</div>
+<script>
+// Get the elements with class="column"
+var elements = document.getElementsByClassName("column");
+
+// Declare the variables
+var i; 
+var imgselect; 
+var username;
+var uname = "<?= $_SESSION["username"]?>";
+var img_from_page = Array(1);
+
+function image_selection(imageid)
+{
+  imgselect = imageid;
+  img_from_page[0] = imgselect;
+} 
+function next()
+{
+	//console.log(img_from_page);
+	//console.log(myJSON);
+  $.ajax({  
+    url: 'read_json.php',
+    type: 'POST',
+	data: {img:imgselect,username:uname},
+	dataType:'json',
+	sucess: function(output)
+	{
+		alert(output);
+	},
+	error: function(request, status, error)
+	{
+		alert("Error: Could not load properly");
+	}
+	});
+}
+</script>
+
+<div class="button" id="next_button" align="center">
+	<br>
+	<br>
+	<br>
+	<button onclick="next()">Next</button>
+	<!--button onclick="window.location.href = './test_1.html';">Next</button-->
+	</div>
+</body>
+</html>
